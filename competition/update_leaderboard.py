@@ -34,7 +34,7 @@ def main():
             # Load Submission
             pred_df = pd.read_csv(file_path)
             
-            # FIXED: Changed 'y_pred' to 'label' to match your README instructions
+            # Validation: check for required columns in the submission
             if 'id' not in pred_df.columns or 'y_pred' not in pred_df.columns:
                 print(f"⚠️ Skipping {file_path}: Missing columns (id, y_pred)")
                 continue 
@@ -46,8 +46,8 @@ def main():
                 continue
 
             # Score (Macro F1)
-            # FIXED: Using 'label' column
-            score = f1_score(true_df['y_pred'], pred_df['y_pred'], average='macro')
+            # FIXED: true_df uses 'label', pred_df uses 'y_pred'
+            score = f1_score(true_df['label'], pred_df['y_pred'], average='macro')
             
             # Extract Team Name
             # Logic: If file is 'submissions/TeamA.csv', team is 'TeamA'
